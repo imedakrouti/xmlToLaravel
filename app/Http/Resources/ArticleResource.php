@@ -24,6 +24,7 @@ class ArticleResource extends JsonResource
             'publicationDate' =>  Carbon::createFromFormat('Y-m-d H:i:s', $this->publicationDate)->format('D, d M Y H:i:s O'),
             'link' => $this->link,
             'mainPicture' => $this->mainPicture,
+            'vowel_word' => $this->VowelWord,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'import' => (new ImportResource($this->import))
         ];

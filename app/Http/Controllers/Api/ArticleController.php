@@ -14,6 +14,7 @@ class ArticleController extends BaseController
     public function index()
     {
         $articles = Article::with('import')->get();
+        //dd($articles);
         $data['Article'] =  ArticleResource::collection($articles);
         return $this->sendResponse($data, 'list of articles');
     }

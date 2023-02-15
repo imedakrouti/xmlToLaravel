@@ -21,6 +21,10 @@ class ImportController extends BaseController
         $xml = simplexml_load_string($import->rawContent);
         $articles = $xml->channel->item;
         foreach ($articles as $article) {
+            $mediaContent = $article->children('media', true)->content;
+
+            $url = (string) $mediaContent->attributes()['url'];
+
             $articleData = [
                 'externalId' => $article->guid,
                 'importDate' => $import->importDate,
@@ -28,7 +32,7 @@ class ImportController extends BaseController
                 'description' => $article->description,
                 'publicationDate' =>  Carbon::createFromFormat('D, d M Y H:i:s O', $article->pubDate),
                 'link' =>  $article->link,
-                'mainPicture' => (string) $article->enclosure['url'],
+                'mainPicture' => $url,
                 'import_id' => $import->id
             ];
             Article::firstOrCreate(['externalId' => $articleData['externalId']], $articleData);
