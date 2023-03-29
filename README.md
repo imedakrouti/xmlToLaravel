@@ -6,6 +6,41 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
+# Moodle
+## Voici les étapes à suivre pour exécuter votre application localement avec vagrant:
+ ### Requirements:
+ 
+-  Docker
+-  Docker compose
+ ### Installation
+```bash
+pip install foobar
+```
+```bash
+vagrant up
+vagrant ssh
+git clone-b https://gitlab.kaisens.fr/acherfi/moodle/-/tree/bugfix/change-docker-web-host
+cd moodle
+chmod +x ./bin/moodle-docker-compose
+chmod +x ./bin/moodle-docker-wait-for-db
+chmod +x ./moodle/vendor/bin/behat
+```
+##### Webserver host
+il faut changer MOODLE_DOCKER_WEB_HOST par l'adresse ip de votre machine.
+```sh
+nano bin/moodle-docker-compose
+```
+export MOODLE_DOCKER_WEB_HOST=${MOODLE_DOCKER_WEB_HOST:-addresse ip machine}
+```sh
+ctrl+s
+ctrl+x
+```
+Lancer le script d'instalation
+```sh
+sh ./app-setup.sh
+```
+
+
 
 
 ## About Laravel
